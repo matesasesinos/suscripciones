@@ -1,0 +1,9 @@
+{
+    "autoload": {
+        "psr-4": {
+            "Suscripciones\\Classes\\": "inc/classes",
+            "Suscripciones\\Entities\\": "inc/entities",
+            "Suscripciones\\Menu\\": "inc/menu"
+        }
+    }
+}
