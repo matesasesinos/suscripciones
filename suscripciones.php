@@ -18,6 +18,8 @@ define('BASE_URL', plugin_dir_url(__FILE__));
 // include the Composer autoload file
 require BASE_PATH . 'vendor/autoload.php';
 
+// use Suscripciones\Classes\Test;
+// Test::initialize();
 
 use Suscripciones\Menu\SuscripcionesMenu;
 use Suscripciones\Entities\SuscripcionesPostType;

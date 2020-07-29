@@ -2,17 +2,29 @@
 
 namespace Suscripciones\Classes;
 
-class Test {
+class Test
+{
 
-    public static function hola() {
+    static private $initialized = false;
+    static public function initialize()
+    {
+        if (self::$initialized)
+            return false;
+        self::$initialized = true;
+  
+        return true;
+    }
+
+    public static function hola()
+    {
         return 'hola stoy el panel principal';
     }
 
 
-    public static function submenu() {
+    public static function submenu()
+    {
         return 'soy el menu digo submenu';
     }
-
 
 
 }
