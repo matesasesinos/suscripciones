@@ -24,8 +24,10 @@ require BASE_PATH . 'vendor/autoload.php';
 use Suscripciones\Menu\SuscripcionesMenu;
 use Suscripciones\Entities\SuscripcionesPostType;
 use Suscripciones\Classes\Metaboxes;
+use Suscripciones\Classes\Functions;
 
 
 SuscripcionesMenu::initialize();
 SuscripcionesPostType::initialize();
 Metaboxes::initialize();
+Functions::init();
