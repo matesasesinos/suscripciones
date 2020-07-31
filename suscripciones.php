@@ -30,4 +30,4 @@ use Suscripciones\Classes\Functions;
 SuscripcionesMenu::initialize();
 SuscripcionesPostType::initialize();
 Metaboxes::initialize();
-Functions::init();
+Functions::initialize();
