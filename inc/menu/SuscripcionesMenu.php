@@ -39,8 +39,7 @@ class SuscripcionesMenu {
     }
 
     static public function panelcito() {
-        echo 'hola';
-        echo ABSPATH . 'wp-admin/includes/class-wp-list-table.php';
+        echo 'aca el panel';
     }
     
 

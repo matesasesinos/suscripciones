@@ -14,12 +14,28 @@ class UserRole {
         self::$initialized = true;
         self::form_role(self::$role);
         self::user_role();
+        self::chekboxes();
         return true;
     }
+    
 
     static public function get_roles() {
         global $wp_roles;
         $roles = $wp_roles->get_names();
+        return $roles;
+    }
+
+    static public function chekboxes() {
+        $role = self::get_roles();
+        $roles = array();
+        foreach($role as $rol) {
+            $roles_cap = get_role( sanitize_title($rol) )->capabilities;
+            foreach($roles_cap as $key => $value) {
+                if($key === 'suscriptores') {
+                    $roles[] = $rol;
+                }
+            }
+        }
         return $roles;
     }
 

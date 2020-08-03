@@ -22,7 +22,7 @@ class Metaboxes {
             'private-post',
             __( 'Contenido para suscriptores', 'genosha' ),
             [self::class,'suscripciones_meta_box_callback'],
-            $screens,
+            ['post','page'],
             'normal',
             'high'
         );
@@ -34,6 +34,8 @@ class Metaboxes {
         
         $values    = get_post_custom($post->ID);
         $private     = isset($values['suscripcion_private']) ? esc_attr($values['suscripcion_private'][0]) : '';
+
+        
          echo '<label> ¿Es contenido solo para suscriptores? <input type="checkbox" id="suscripcion_private" value="on" name="suscripcion_private" '.checked($private, 'on', false) .' /></label>';
 
     }

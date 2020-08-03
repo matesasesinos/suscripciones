@@ -31,7 +31,6 @@ class Functions
 
     static public function filter_the_content_in_the_main_loop( $content ) 
     {
- 
         return esc_html__( 'Esta entrada es solo para suscriptores', 'genosha');
     }
 }
