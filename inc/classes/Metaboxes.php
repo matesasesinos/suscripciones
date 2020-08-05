@@ -23,7 +23,7 @@ class Metaboxes {
             __( 'Contenido para suscriptores', 'genosha' ),
             [self::class,'suscripciones_meta_box_callback'],
             ['post','page'],
-            'normal',
+            'side',
             'high'
         );
     }
@@ -35,8 +35,26 @@ class Metaboxes {
         $values    = get_post_custom($post->ID);
         $private     = isset($values['suscripcion_private']) ? esc_attr($values['suscripcion_private'][0]) : '';
 
+        $roles = UserRole::chekboxes();
+
         
-         echo '<label> ¿Es contenido solo para suscriptores? <input type="checkbox" id="suscripcion_private" value="on" name="suscripcion_private" '.checked($private, 'on', false) .' /></label>';
+         $field = '<label> ¿Es contenido solo para suscriptores? <input type="checkbox" id="suscripcion_private" value="on" name="suscripcion_private" '.checked($private, 'on', false) .' /></label>';
+
+         $field .= '<p>Suscriptores autorizados</p>';
+        $rol_meta = maybe_unserialize( get_post_meta( $post->ID, '_roles', true ) );
+        foreach($roles as $id => $rol) {
+            //echo $rol;
+            $slug = sanitize_title($rol);
+            if ( is_array( $rol_meta ) && in_array( $slug, $rol_meta ) ) {
+                $checked = 'checked="checked"';
+            } else {
+                $checked = null;
+            }
+            $field .= '<label><input type="checkbox" value="' . $slug . '" name="rol[]" '. $checked .' /> ' .$rol. '</label><br />';
+
+        }
+
+       echo $field;
 
     }
 
@@ -57,6 +75,14 @@ class Metaboxes {
         }
     
         $check = isset($_POST['suscripcion_private']) && $_POST['suscripcion_private'] ? 'on' : 'off';
+        $roles = $_POST['rol'];
+
         update_post_meta($post_id, 'suscripcion_private', $check);
+        if(!empty($roles)) {
+            update_post_meta( $post_id, '_roles', $_POST['rol'] );
+        } else {
+            delete_post_meta( $post_id, '_roles' );
+        }
+        
     }
 }

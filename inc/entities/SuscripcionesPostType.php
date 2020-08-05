@@ -91,7 +91,7 @@ class SuscripcionesPostType
                         echo $rol.', ';
                     endforeach;
                 else
-                    _e( 'Unable to get author(s)', 'your_text_domain' );
+                    _e( 'No hay roles?', 'genosha' );
                 break;
     
             case '_price' :
